@@ -2,6 +2,8 @@ var path = require('path')
 
 var webpack = require('webpack')
 
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -18,12 +20,24 @@ module.exports = {
         }
       },
       {
-        test: '/\.js$/',
+        test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader'
         }
       }
+      // {
+      //   test: /\.js$/,
+      //   exclude: /(node_modules|bower_components)/,
+      //   use: [{
+      //       loader: 'babel-loader',
+      //       options: {
+      //         presets: ['es2015'],
+      //         cacheIdentifier: false
+      //       }
+      //     }
+      //   ]
+      // }
     ]
   },
   resolve: {
@@ -45,7 +59,8 @@ if (process.env.NODE_ENV === 'production') {
         NODE_ENV: '"production"' // 定义生产环境全局变量
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({ // 压缩js
+    // new UglifyJsPlugin(), // 压缩js
+    new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       }
