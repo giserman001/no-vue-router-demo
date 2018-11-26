@@ -4,8 +4,7 @@
 # Build Setup
 
 ## Install dependencies
-yarn  #or  npm install
-## Note: do not install with CNPM dependency
+npm install
 
 ## Product
 npm run build
